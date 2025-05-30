@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Criptosistemas</title>
+    <script>
+        function cifrar() {
+            const entrada = document.getElementById('entrada').value;
+            
+            fetch('http://192.168.1.68:5000/sustitucion/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ texto: entrada })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.status);
+                }
+                return response.json();
+            })
+             
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('salida').value = 'Ocurrió un error al conectar con el servidor.';
+            });
+        }
+    </script>
+
+</head>
+<body class="bg-[#4E6688]">
+    <header class="block bg-[#0E2135] p-4 flex flex-col">
+        <div class="flex items-center justify-center mt-6 mb-4">
+            <h1 class="text-7xl font-extrabold text-[#71C0BB] drop-shadow-[0.2rem_0.5rem_0_#332D56]">CRIPTOSISTEMAS</h1>
+        </div>
+        <div class="w-full hidden lg:flex justify-center items-center gap-8">
+            <div class="shadow-sm p-5 rounded">
+                <i class="fas fa-robot text-6xl text-[#4E6688]"></i>
+            </div>
+            <div class="shadow-sm p-5 rounded">
+                <i class="fab fa-redhat text-6xl text-[#4E6688]"></i>
+            </div>
+            <div class="shadow-sm p-5 rounded">
+                <i class="fab fa-windows text-6xl text-[#4E6688]"></i>
+            </div>
+        </div>
+    </header>
+    <main class="p-5">
+        <div class="w-full bg-gray-900 grid grid-cols-[65%_35%] gap-4 rounded-lg shadow-lg p-6">
+            <div class="flex flex-col gap-4">
+                <h2 class="text-3xl font-bold text-[#71C0BB]">Definición:</h2>
+                <p class="text-gray-300">Un criptosistema es un conjunto de métodos, reglas y procedimientos matemáticos diseñados para proteger la información mediante técnicas de cifrado. Su objetivo principal es garantizar la confidencialidad, integridad, autenticidad y, en algunos casos, la no repudio de los datos.</p>
+            </div>
+            <div class="w-full h-60 overflow-hidden rounded-lg shadow-lg">
+                <img class="object-contain w-full h-full" src="/img/criptosistemas.png" alt="">
+            </div>
+        </div>
+        <div class="w-full grid grid-row-[25%_75%] mt-3 border rounded border-[#71C0BB]">
+            <div class="w-full flex flex bg-[#0E2135] px-4 py-3 items-center justify-center rounded">
+                <div class="w-full px-3 py-2 border-b-2  border-[#71C0BB] bg-[rgba(113,192,187,0.1)]">
+                    <i class="fas fa-exchange-alt text-[#71C0BB]"></i>
+                    <button class="text-[#71C0BB] font-extrabold ml-2">Sustitución</button>
+                </div>
+                <div class="w-full px-3 py-2 border-b-2  border-[#71C0BB] ">
+                    <i class="fas fa-volume-up text-[#71C0BB]"></i>
+                    <button class="text-[#71C0BB] font-extrabold ml-2">Homofónica</button>
+                </div>
+                <div class="w-full px-3 py-2 border-b-2  border-[#71C0BB] ">
+                    <i class="fas fa-language text-[#71C0BB]"></i>
+                    <button class="text-[#71C0BB] font-extrabold ml-2">Polialfabética</button>
+                </div>
+                <div class="w-full px-3 py-2 border-b-2  border-[#71C0BB] ">
+                    <i class="fas fa-th-large text-[#71C0BB]"></i>
+                    <button class="text-[#71C0BB] font-extrabold ml-2">Poligráfica</button>
+                </div>
+            </div>
+            <div class="w-full bg-gray-900 p-4 grid grid-cols-[47%_5%_47%] gap-2">
+                <div class="w-full">
+                    <h2 class="mb-2 text-[#71C0BB] font-extrabold">TEXTO</h2>
+                    <textarea class="w-full h-40 rounded p-3 bg-gray-200" name="entrada" id="entrada" placeholder="Escribe aquí..."></textarea>
+                </div>
+                <div class="w-full flex items-center justify-center">
+                    <button onclick="cifrar()">
+                        <i class="fas fa-exchange-alt text-[#71C0BB] hover:scale-110 hover:bg-[#4E6688] hover:text-gray-900 p-2 rounded-lg"></i>
+                    </button>
+                </div>
+                <div class="w-full">
+                    <h2 class="mb-2 text-[#71C0BB] font-extrabold">CODIFICACIÓN</h2>
+                    <textarea class="w-full h-40 rounded p-3 bg-gray-200" name="salida" id="salida" placeholder="Resultado aquí..." disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>
