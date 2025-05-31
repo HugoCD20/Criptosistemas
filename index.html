@@ -15,7 +15,12 @@
     </style>
     <script>
         let metodo = 'sustitucion/';
-        let url = 'http://192.168.1.68:5000/';
+        let url = 'http://192.168.153.222:5000/';
+        function decodificar(){
+            document.getElementById('salida').value = "";
+            document.getElementById('entrada').value = "";
+            metodo += "decodificacion"+"/"
+        }
 
         function cambiarMetodo(nuevoMetodo) {
             metodo = nuevoMetodo + '/';
@@ -89,7 +94,7 @@
         </div>
         <div class="w-full grid grid-row-[25%_75%] mt-3 border rounded border-[#71C0BB]">
             <div class="w-full flex flex bg-[#0E2135] px-4 py-3 items-center justify-center rounded">
-                <div class="opcion w-full px-3 py-2 border-b-2 border-[#71C0BB]">
+                <div class="activo opcion w-full px-3 py-2 border-b-2 border-[#71C0BB]">
                     <button class="text-[#71C0BB] font-extrabold ml-2 w-full text-left" onclick="cambiarMetodo('sustitucion')">
                         <i class="fas fa-exchange-alt text-[#71C0BB]"></i>
                         Sustitución
@@ -98,7 +103,7 @@
                 <div class="opcion w-full px-3 py-2 border-b-2  border-[#71C0BB] ">
                     <button class="text-[#71C0BB] font-extrabold ml-2 w-full text-left" onclick="cambiarMetodo('homofonica')">
                         <i class="fas fa-volume-up text-[#71C0BB]"></i>
-                        Homofónica
+                        Kasiki-vegenóre
                     </button>
                 </div>
                 <div class="opcion w-full px-3 py-2 border-b-2  border-[#71C0BB] ">
@@ -119,9 +124,12 @@
                     <h2 class="mb-2 text-[#71C0BB] font-extrabold">TEXTO</h2>
                     <textarea class="w-full h-40 rounded p-3 bg-gray-200" name="entrada" id="entrada" placeholder="Escribe aquí..."></textarea>
                 </div>
-                <div class="w-full flex items-center justify-center">
+                <div class="w-full flex  flex-col items-center gap-3 justify-evenly">
                     <button onclick="cifrar()">
                         <i class="fas fa-exchange-alt text-[#71C0BB] hover:scale-110 hover:bg-[#4E6688] hover:text-gray-900 p-2 rounded-lg"></i>
+                    </button>
+                    <button onclick="decodificar()">
+                        <i class="fa-solid fa-shuffle text-[#71C0BB] hover:scale-110 hover:bg-[#4E6688] hover:text-gray-900 p-2 rounded-lg"></i>
                     </button>
                 </div>
                 <div class="w-full">

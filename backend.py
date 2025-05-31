@@ -9,6 +9,7 @@ api= Api(app)
 
 import criptosistemas as resourcest
 api.add_resource(resourcest.sustitucion, '/sustitucion/')
+api.add_resource(resourcest.decodificacionS, '/sustitucion/decodificacion/')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

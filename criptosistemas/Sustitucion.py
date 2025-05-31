@@ -25,5 +25,32 @@ class sustitucion(Resource):
 
         return {"resultado": cifrado}, 200
 
+class decodificacicion(Resource):
+    def post(self):
+        alfabeto = {
+            'D': 'A', 'E': 'B', 'F': 'C', 'G': 'D', 'H': 'E', 'I': 'F',
+            'J': 'G', 'K': 'H', 'L': 'I', 'M': 'J', 'N': 'K', 'O': 'L',
+            'P': 'M', 'Q': 'N', 'R': 'O', 'S': 'P', 'T': 'Q', 'U': 'R',
+            'V': 'S', 'W': 'T', 'X': 'U', 'Y': 'V', 'Z': 'W', 'A': 'X',
+            'B': 'Y', 'C': 'Z'
+        }
+
+
+        data = request.get_json()
+        texto = data.get("texto")
+        if not texto:
+            return {"error": "No se proporcionó texto para cifrar"}, 400
+
+        texto = texto.upper()
+        cifrado = ""
+        for i in texto:
+            if i in alfabeto:
+                cifrado += alfabeto[i]
+            else:
+                cifrado += i
+
+        return {"resultado": cifrado}, 200
+
+
         
         
